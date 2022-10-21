@@ -1,22 +1,26 @@
 #include "functions.hpp"
 
 
-int squeeze_list(int len, int* list){
-    for (int i = 0; i < len; i++){
-        for (int j = i + 1; j < len; j++){
-            if (list[j] == list[i]){
-                list[j] = -1;
-            }
+int main ()
+{
+    int num = 0;
+    printf("Введите число членов массива\n");
+    scanf("%d", &num);
+
+    int el;
+    int ans[10002] = {};
+    int r_ans = 0;
+    int set[10002] = {};
+    printf("Введите элементы массива\n");
+    for (int i = 0; i < num; i++){
+        scanf("%d", &el);
+        if (set[el] == 0){
+            ans[r_ans] = el;
+            set[el] = 1;
+            r_ans++;
         }
     }
-
-    printf("Squeezed: ");
-    for (int i = 0; i < len; i++){
-        if (list[i] != -1){
-            printf("%d ", list[i]);
-        }
+    for (int i = 0; i < r_ans; i++){
+        printf("%d ", ans[i]);
     }
-    printf("\n");
-
-    return 1;
 }

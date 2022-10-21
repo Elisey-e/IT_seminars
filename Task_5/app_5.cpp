@@ -25,11 +25,15 @@ int insert_sort(int len, int* list){
 int shell_sort(int len, int* list){
     int buffer = 0;
     for (int s = len / 2; s > 0; s /= 2) {
-        for (int i = s; i < len; ++i) {
-            for (int j = i - s; j >= 0 && list[j] > list[j + s]; j -= s) {
-                buffer = list[j];
-                list[j] = list[j + s];
-                list[j + s] = buffer;
+        for (int j = 0; j < s; ++j) {
+            for (int i = 1; i < len / s; ++i) {
+            int x = list[j + s * i];
+            int k = j + s * i;
+            while (k > 0 && list[k - 1] > x) {
+                list[k] = list[k - 1];
+                --k;
+            }
+            list[k] = x;
             }
         }
     }
